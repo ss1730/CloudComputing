@@ -1,0 +1,108 @@
+<label>Question 1:Read the following article http://martinfowler.com/articles/microservices.html and explain what "Microservices Architecture" means <b>20 points</b> </label>
+
+<pre xmp>Tomaria lo mismo que en mi respuesta del video de la tarea 0,ya que emplea la misma informacion e imagenes para aterrizar la idea de la que esmicroservicios, en el uso que tienen actualmente y su funcionalidad prinicpal( pero sin la iteraccion entre los espectaores).
+  Solo que ahora me parecio que inicio directo a como utiliamos los microservicios para entrar con el tema de que se fueron dado gracias a los datos que utulizamos o tenemos y como deberian de estar en su propio dominio ( lo que antes se pensaba que irian al mismo Disco duro o ambiente), entonces termina con el articulo que actualmente limitan nuestros servicios por la informacion que
+  procesamos y por lo que estam hechos lo que significa (a mi entnedimiento) que microservicios  iran
+  evolucionndo por le itpo de informacion que obtendremos en un futuro , y aqui es cuando entra IoT.
+</pre>
+
+<label>
+  QUestion 2 and 3 - Create a bash file to setup a complete environment for this class. <b>20 Points.</b>
+</label>
+
+<pre xmp>
+  <p>echo "Instalando AWS"</p>
+    <p>sudo apt install python-pip</p>
+<p>pipversion= $(pip --version)</p>
+<p>echo "Version de PIP: ",$pipversion</p>
+<p>pythonversion=$(python --version)</p>
+<p>echo "Version de Python: ",$pythonversion</p>
+<p>pip install awscli --upgrade --user</p>
+<p>aws=$(aws --version)</p>
+<p>echo "AWS :",$aws</p>
+
+<p>echo "Instalando npm"</p>
+<p>sudo apt install npm --global npm@latest</p>
+
+<p>echo "Instalando Yeoman"</p>
+<p>sudo apt install --reinstall nodejs npm nodejs-legacy</p>
+<p>sudo npm install -g yo</p>
+<p>yeoman= $(yo --version)</p>
+<p>echo $yeoman</p>
+
+<p>echo "Instalando Grunt"</p>
+<p>sudo npm install -g grunt-cli</p>
+
+<p>echo "Ambiente de Desarrollo Instalando"</p>
+<p>sleep 5</p>
+<p>echo "Creando Bucket"</p>
+<p>echo "Escribe el nombre de tu BOCKET"</p>
+<p>read name</p>
+<p>BUCKET=$name</p>
+<p>echo $BUCKET</p>
+<p>echo "deleting bucket"</p>
+<p>aws s3 rm s3://$BUCKET --recursive</p>
+<p>aws s3api delete-bucket --bucket $BUCKET</p>
+
+<p>echo "Create Bucket"</p>
+<p>aws s3api create-bucket --bucket $BUCKET</p>
+
+<p>echo "CREATE IN WEBSITE"</p>
+<p>cd</p>
+<p>if [ -d "/home/isaac/Projects" ]; then </p>
+<p>sudo rm -rf "/home/isaac/Projects"</p>
+ <p>mkdir "/home/isaac/Projects"</p>
+<p>else</p>
+ <p>mkdir "home/isaac/Projects"</p>
+<p>fi //Falta para que solo borre el bucket y no todo lo de proyectos, asi puedes tener diferentes proyectos.</p>
+<p>cd Projects</p>
+<p>mkdir $BUCKET</p>
+<p>cd $BUCKET</p>
+<p>yo angular $BUCKET</p>
+<p>grunt build --force</p>
+<p>cd dist</p>
+<p>echo "UPLOADING Website to S3"</p>
+<p>aws s3 sync . s3://sosaglez --acl public-read</p>
+<p>echo "creating website"</p>
+<p>aws s3 website s3://$BUCKET/ --index-document index.html --error-document error.html</p>
+
+<p>firefox http://s3.amazonaws.com/$BUCKET/index.html
+</p>
+</pre>
+
+<label>
+  Question 4.- Explain how routes work in angular and a code example <b>10 points</b>
+</label>
+
+<pre xmp>
+  Entiendo que es aplicar una estructura a la hora de leer el URL de tu website, al igual que lo hace asp.net, Django u otro framework para website, que es aplicar un sintaxis de modulacion para navegar sobre sus recursos, en este caso el router es la conexion (basada en la estructura especficia) entre los demas archivos, asi evita cambiar su forma de llamar estas paginas o validar si la ruta existe, simplemente si no contiene esa esctrucura predterminada , no la ejecuta o no trata de conectare.Aparte que facilita el tener una ruta ordenada entre modulos o estados del sistema o unir modulos entre si, para no crear nuevas vistas en el tiempo de ejecucion.
+  Ejemplo: app.js
+   .when('/homeworks', {
+        templateUrl: 'views/homeworks.html',
+        controller: 'homeworksCtrl',
+        controllerAs: 'homeworks',
+        activetab:'homeworks'
+      })
+
+  donde por deficinion del diseño entra en un estado case y acede a sus propiedades para saber si existe el recurso, y cargar sus propiedades.
+</pre>
+
+<label>
+  Qustion 4 -Explain how you can have more than one access key in your computer and how to
+  use each one. Provide code or configuration examples
+</label>
+
+<pre xmp>
+1ra opcion: es adminaistrado con IAM Roles donde con aws configuration establecemos perfiles y podemos tener diferentes keys para el desarrollo quequeramos, 2da opcion: aunque el mas correcto seria utilizar cuentas , donde ya cambiamos el dominio de nuestra cuenta central, pienso que la opcion 1 es lo que usaste en nuestra cuentas, administras dentro de un dominio difernetes keys y access key. Pero me imaigno que tienes diferentes cuentas (trabajo) y (escuela) donde ahi usas el siguiente comando
+    aws configure --profile account1 or account2 y tambien puedes usar los recursos almacenados como:
+        aws dynamodb list-tables --profile account1 pero seria para algo en especifico.
+</pre>
+
+<label>
+  Explain what are you going to do different this semester based on last semester
+  experience. <b>10 points</b>
+</label>
+
+<pre xmp>
+Sinceramente administarme e investigar mas sobre las tecnologias que estamos usando y como las puedo usar en un futuro (mas Cloud Computing y no es por hacer la barba) si no que sincermaente tenemos la oportunidad de utilizar estas tecnologias para hacer lo que queramos y no batallar el dia de manana.Por el otro lado al inicio del semestre me llego ese pensamiento que como Ing. en Ciencias Computacionales, puedes especializarte en muchas cosas, Yo tome esta carrea como plan B ya que siempre me he inclinado por los videojuegos, pero me doy cuenta que el aprender tecnicas y  metolodigas de trabajo, me ayudaran para estar en donde siempre he querido y que gracias a estas practicas puedo estructurar mejor mis proyectos y tener un mayor impacto en ellos.
+</pre>
