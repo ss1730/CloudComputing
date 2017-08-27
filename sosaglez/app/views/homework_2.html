@@ -1,1 +1,642 @@
-<p>This is the homework_2 view.</p>
+
+<label>
+  Question 1.- Explain what CloudFormation is and write a yaml file to create a bucket using
+  CloudFormation. 15 points.
+</label>
+
+<pre xmp style="width: 1200px;">
+  Es un nodo de trabajo especifico en donde mantienes una comunicacion especial con los recusos que ofrece AWS.
+  Yo lo veo como un Setup de un proyecto predeterminado ya sea Videojuegos, para esto voy a necestar gamelift s3 y otros componentes de AWS
+  entonces hago un template de CloudFormation (una estructura base con configuraciones prederteminadas por el equipo de desarrollo) asi de esta forma
+  el proyecto lleva un desarrollo evolutivo por poner una diferencia.
+
+  Ejemplo:
+
+  Type: "AWS::S3::Bucket"
+Properties:
+  AccessControl: PublicRead
+  BucketName: Videojuegos
+  WebsiteConfiguration:
+    ErrorDocument:404.html
+    IndexDocument:Index.html
+
+</pre>
+
+
+<label>
+  Question 2. Create a Hello World in NodeJs and create a tutorial about it. 15 points
+</label>
+<pre xmp style="width: 1200px;">
+Hello World Example.
+  1er paso: Instalar NodeJs con el siguiente comando desde la Terminal de comandos $ sudo apt-get install nodejs y nos aparecera lo siguiente:
+   <img src="resources/Paso1.png" alt="Paso 1" style="width:800px;height:500px;">
+  2do paso: revisar si NodeJs se instalo revisando desde la Terminal de comandos --> $ nodejs -v y nos aparecera lo siguiente:
+   <img src="resources/Paso2.png" alt="Paso 2" style="width:800px;height:500px;">
+
+  3er paso: crear un archivo con la Terminal de comandos --> $ touch Hellowordl.js el cual se generara en tu directorio home (si no cambiaste la ruta claro)
+   <img src="resources/Paso 3.png" alt="Paso 3" style="width:800px;height:500px;">
+   <img src="resources/Paso 4.png" alt="Paso 3" style="width:800px;height:500px;">
+
+  4to paso: pasaremos a modificar el archivo ya sea con gedit
+  <img src="resources/paso 5.png" alt="Paso 5" style="width:800px;height:500px;">
+  como en esta ocacion desde la Terminal de comandos $ vim Helloworld.js
+<img src="resources/Paso 3.png" alt="Paso 3" style="width:800px;height:500px;">
+
+  5to paso: Escribiremos lo siguiente en el archivo Helloworld.js --> console.log("Hello World"); guardamos el archivo.
+   <img src="resources/Paso 6.png" alt="Paso 6" style="width:800px;height:500px;">
+
+  6to paso: Desde la Terminal de Comandos ejecutaremos lo siguiente --> $ node Helloworld.js y obtendremos lo siguiente:
+   <img src="resources/Paso 7.png" alt="Paso 7" style="width:800px;height:500px;">
+
+</pre>
+
+
+<label>
+  Question 3. Install the aws sdk for nodejs and create a tutorial about it. 15 points.
+</label>
+<pre xmp style="width: 1200px;">
+ 1er paso: Instalar NodeJs con el siguiente comando desde la Terminal de comandos $ sudo apt-get install nodejs y nos aparecera lo siguiente:
+   <img src="resources/Paso1.png" alt="Paso 1" style="width:800px;height:500px;">
+
+  2do paso: Instalar npm desde la Terminal de comandos $ sudo apt-get install npm
+   <img src="resources/npm.png" alt="npm" style="width:800px;height:500px;">
+  3er paso: Instalar npm install aws-sdk
+   <img src="resources/aws-sdk.png" alt="aws-sdk" style="width:800px;height:500px;">
+  4to paso: Ahora, siempre que necesitemos hacer uso de aws-sdk , en tu archivo .js pondremos lo siguiente:
+   <img src="resources/require.png" alt="require" style="width:800px;height:500px;">
+
+</pre>
+
+
+<label>
+  Question 4. Create a code in NodeJs that will tell you the version/date of your website in S3. 15
+  points
+</label>
+<pre xmp style="width: 1200px;">
+
+  var AWS = require('aws-sdk');
+
+  var s3 = new AWS.S3();
+
+  //inicializacion de parametros
+  var params ={
+  Bucket:"sosaglez",
+  Key:"index.html"
+  };
+
+  //llamada a s3
+  s3.getObject(params,function(err,data){
+  if(err)
+  console.log(err,err.stack);
+  else
+  console.log(data.data modified)
+</pre>
+
+
+<label>
+  Question 5. Read and explain the post about Microservices Trade-Offs by Martin Fowler
+  (http://martinfowler.com/articles/microservice-trade-offs.html). 15 points.
+</label>
+<pre xmp style="width: 1200px;">
+Me quedo con la idea del video de What are Microservices? ya que por las imagenes llega al punto
+  de lo que en verdad son los microservicios y su arquitectura Monolitica (solo hace 1 cosa tu servicio) y esta ventaja
+  es la deficion de tu software de los recursos que estas usando, la desventaja es que al escalar puede llegar ser erroneo
+  y mas como algunos programadores piensan que funciona. Y al tener cada servicio aparte (lo cual es un ventaja en grupos grandes)
+  es que los recurso empiezan hacer en paraelo o asycrona donde debes de tener un muy buen desarrollo en tus pilares.
+</pre>
+
+
+<label>
+  Question 6. Create a comparison table between AWS, Azure and Google Cloud. 15 points.
+</label>
+<pre xmp style="width: 1200px;">
+ <table style="width:50%">
+  <tr>
+     <th>Servicios</th>
+    <th>Amazon</th>
+    <th>Google</th>
+    <th>Azure</th>
+  </tr>
+  <tr>
+    <td>Hourly Pay-As-You-Go</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Cloud Management Software</td>
+    <td>proprietary</td>
+    <td>proprietary</td>
+    <td>94</td>
+  </tr>
+
+   <tr>
+    <td>One Account For All Locations</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Web Interface</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Mobile App</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+  </tr>
+
+   <tr>
+    <td>Languages</td>
+    <td>English</td>
+    <td>English,Chinese,French,German,Indonesian,Japanse,Korean,Spanish</td>
+    <td>English</td>
+  </tr>
+
+   <tr>
+    <td>Terminal access</td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+  </tr>
+
+   <tr>
+    <td>API</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>AWS-compatible API</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+   <tr>
+    <td>OpenStack-compatible API</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+     <tr>
+    <td>Command line</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+     <tr>
+    <td>Auto-scaling</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+
+     <tr>
+    <td>Vertical scaling without reboot</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+
+     <tr>
+    <td>Image from cloud server</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+
+     <tr>
+    <td>Upload cloud server image</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+
+     <tr>
+    <td>Download cloud server image</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+     <tr>
+    <td>Mount CD/DVD ISO</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+    <tr>
+    <td>Hypervisor</td>
+    <td>Xen</td>
+    <td>KVM</td>
+    <td>Hyper-V</td>
+  </tr>
+
+    <tr>
+    <td>RAM</td>
+    <td>630 MB - 1952 GB</td>
+    <td>0.6G B-416 GB</td>
+    <td>768 MB-448 GB</td>
+  </tr>
+
+    <tr>
+    <td>CPU cores</td>
+    <td>1-128</td>
+    <td>1-64</td>
+    <td>1-16</td>
+  </tr>
+
+    <tr>
+    <td>Storage</td>
+    <td>Instace: 160 GB -48TB EBS:1 GB - 20TB</td>
+    <td>1 GB - 64TB</td>
+    <td>1 GB - 32 TB</td>
+  </tr>
+
+    <tr>
+    <td>Persistent instance storage</td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+    <tr>
+    <td>Custom RAM & CPU ratio</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+    <tr>
+    <td>Independent storage size</td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+    <td><h2>Partial</h2></td>
+  </tr>
+
+    <tr>
+    <td>Burstable CPU</td>
+    <td>Partial</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+    <tr>
+    <td>GPU instances</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+    <tr>
+    <td>SSD Storage Available</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+    <tr>
+    <td>Resource usage monitoring (CPU, RAM, disc, network)</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+    <tr>
+    <td>Turned off Cost</td>
+    <td>EBS storage if used, Elastic IP If used</td>
+    <td>Storage Only</td>
+    <td>Full</td>
+  </tr>
+
+    <tr>
+    <td>Preinstalled cloud server images</td>
+    <td>12000+</td>
+    <td>28</td>
+    <td>102</td>
+  </tr>
+
+    <tr>
+    <td>Windows license</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+    <tr>
+    <td>SQL Server license</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+  </tr>
+ <tr>
+    <td>RedHat Linux license</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+ <tr>
+    <td>Other licenses</td>
+    <td>Oracle...</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+ <tr>
+    <td>Transfer MS License</td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+    <td><h2>None</h2></td>
+  </tr>
+
+    <tr>
+    <td>Free transfer in</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Free transfer included</td>
+    <td>None</td>
+    <td>None</td>
+    <td>5 GB</td>
+  </tr>
+
+   <tr>
+    <td>Pay-as-you-go</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Transfer packages</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+   <tr>
+    <td>No Transfer Limit</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Transfer per server or account</td>
+    <td>Account</td>
+    <td>Account</td>
+    <td>Account</td>
+  </tr>
+
+   <tr>
+    <td>Free private transfer</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Free transfer to dedicated/collocation</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+   <tr>
+    <td>Free IP</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td>5 per Account</td>
+  </tr>
+
+   <tr>
+    <td>Mappable IP</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Multiple IP per cloud server</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+   <tr>
+    <td>IP cost</td>
+    <td>$0.005/hour</td>
+    <td>0.01/hour</td>
+    <td>0.004/hour</td>
+  </tr>
+
+   <tr>
+    <td>IPv6</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+   <tr>
+    <td>Private IP</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+   <tr>
+    <td>Manage VLANs</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+   <tr>
+    <td>Load balancing service</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td>DNS</td>
+  </tr>
+
+   <tr>
+    <td>Encrypted storage</td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+  </tr>
+
+   <tr>
+    <td>VLAN per customer</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+  </tr>
+
+   <tr>
+    <td>Dedicated & cloud servers in single VLAN</td>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+<tr>
+    <td>VPN</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Firewall</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>ISO/IEC 27001</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>SSAE 16 (former SAS 70 Type II)</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>HIPAA Compilant</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>FISMA Compilant</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>PCI DSS</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Safe Harbor / EU Directive 95/46/EC</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>North America</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>South America</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Europe</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Asia</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Australia</td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+    <td><h2>✓</h2></td>
+  </tr>
+
+   <tr>
+    <td>Africa</td>
+    <td><h2>✓</h2></td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+
+</table>
+</pre>
+
+
+<label>
+  Question 7.-  Read at least 5 sections of Seth Godin’s Manifesto: “Stop Stealing Dreams” and tell
+  me what you think about it. 10 points.
+</label>
+<pre xmp style="width: 1200px;">
+
+  3.Back to (the wrong) School
+  R= Sinceramente hay momentos donde pierdes todo el sentido humano al realizar una actividad o accion cuando alguien
+  toma posesion de ti, en el caso donde se menciona que el joven empezo a tener este rol de trabajador
+  (nada fuera de lo normal, en la actualidad sigue sucediendo) no solo estas creando un pensamiento nuevo, si no que
+  estas alterando el ADN de los siguientes jovenes, siento que esto se da por las necesiades humanas
+  de desarrollar y despertar otras zonas del cerebro humano para reliar una actividad y darse cuenta que el "Jefe" fue
+  remplazad por un Lider y ahora ese Lider esta cambiando a Compartir Ideas e ir evolucionando a la par.
+
+  Y el tomar ventaja es tener empatia por el otro y conocer su trabajo , ya que de el puedes aprender o dejarlo para
+  formar una sociedad.
+
+  4. What is school for?
+  R= Lo cierto es que en la escuela puedes relacionarte y encontrar un guia para formar tu vida, independientemente que
+  para alguien es un negocio y para otros es un trabajo que no quieren. Tenemos la oportunidad de poner nuetras ideas ante
+  una sociedad de la cual comparte caracteristicas similares y tener otro pensamiento.
+  Yo siempre he visto la escuela como un 20% y tu eres el otro 80%.
+
+  10. Frederick J.Kelly and your nightmares
+  Yo lo veo como una forma de limitar a la gente en Sabes, No sabes , Casi lo sabes , y tomando en cuenta que solo se basa
+  en una inteligencia multiple la evaluacion de toda escuela, el reducir y enfatisar en tu mentalidad (que por probabilidad)
+  puedes tener una opcion mas alta que en verdad demostrar que sabes; hace su trabajo la opcion multiple
+  que es cerrarte tu vision para solo decidir por la mejor respusta entre 4 o 3 posibles opciones.
+
+  12. Is It Possible to teach attitudes?
+  R=Creo que hay 2 tipos de personalidades hoy en dia, la social ( un actor, un cantante ...) y la persona que ves dia dia
+  superar sus metas y/o problemas; aunque la escuela que es un lugar donde pasaras mas de 16 aos y muchas veces el maestro mantiene
+  una mentalidad del pasado tus aptitudes son desarrolladas por la gente que ves batallar y te platica de su vida, incluso de uno
+  el entender a ese indiviuo es es la mejor aptitud que puedes formar.
+
+  13. Which came first, the car of the gas station?
+  R=Siento que aqui entra la parte de Evolve en nuestros proyectos, no importa quien es primero o segundo,
+  siempre necesitaras cambiar algo o crear algo sin importar el orden, todo tiene que ver con la necesidad acutal.
+
+
+17.- Reinventing school
+  Sinceramente este es mi proyecto de vida, y entiendo el enfoque de este texto, pero yo siempre he dicho que el cambio esta
+  en crear nuevas formas de enlazar y comunicar el pensar del estudiante con la mente de sabiduria (maestro). Evaular no solo con opciones
+  multiples, si no recrear escenas de un ambiente profesional y que de esta forma el alumno o trabajador pueda compilar la informacion
+  y almacenarla con una header de experencia.
+
+</pre>
+
+<h3>Cooperacion: Jesus Chaidez</h3>
+

@@ -48,6 +48,11 @@ angular
         controller: 'homework_1Ctrl',
         controllerAs: 'homework_1'
       })
+      .when('/homework_2', {
+        templateUrl: 'views/homework_2.html',
+        controller: 'homework_2Ctrl',
+        controllerAs: 'homework_2'
+      })
       .otherwise({
         redirectTo: '/'
       });
