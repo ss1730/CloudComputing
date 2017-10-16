@@ -30,6 +30,8 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/plotlyjs/plotly.js',
+      'bower_components/select2/dist/js/select2.js',
+      'bower_components/bluebird/js/browser/bluebird.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

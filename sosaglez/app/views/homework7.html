@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+  <meta charset="UTF-8">
+    <title>Title</title>
+  <script type="text/javascript" src="../scripts/homework7.js">
+  </script>
+</head>
+<style>
+  body{
+    background: url("../resources/background.jpg") no-repeat;
+  }
+</style>
+<body ng-app="sosaglezApp" ng-controller="Homework7Ctrl">
+<a href="https://github.com/ss1730/CloudComputingAssigment4">Github</a>
+<select ui-select2 ng-model="choosenItem" runat="server">
+  <option ng-repeat="character1 in characters" value="{{character1.id}}">
+    {{character1.name}}
+  </option>
+</select>
+
+<select ui-select2 ng-model="choosenItem2">
+  <option ng-repeat="character2 in characters" value="{{character2.id}}">
+    {{character2.name}}
+  </option>
+</select>
+
+  </div>
+</div>
+<button type="button" ng-click="SetComics(character1,character2)" style="margin-down: 5px" class="btn btn-primary btn-lg btn-block">Empezar busqueda de Comics</button>
+<div>
+
+<div style>
+  <h3 class="ng-binding" style="color: red;">Latency: {{latency}}</h3>
+</div>
+
+<div>
+ <div id="Comics" class="col-lg-5">
+   <h3>Common Commics: </h3>
+   <p ng-repeat="comic in common" class="ng-binding ng-scope" style>{{comic}}</p>
+   <!-- <p>Segundo Character</p>
+   <p ng-repeat="comic in common3" value="comic.id">{{comic.title}}</p>
+   <p>COMUNES</p>
+   <p ng-repeat="comic in common4" value="comic.id">{{comic.title}}</p> -->
+
+ </div>
+ </div>
+
+ <button type="button" ng-click="SetSeries(character1,character2)" style="margin-down: 5px" class="btn btn-primary btn-lg btn-block">Empezar busqueda de Series</button>
+
+  <div id="Series" class="col-lg-5">
+    <h3>Common Series: </h3>
+    <p ng-repeat="series in serie" value={{serie.name}}></p>
+  </div>
+
+</div>
+
+
+
+
+</body>
+</html>

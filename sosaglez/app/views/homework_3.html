@@ -1,0 +1,162 @@
+
+<label>
+  Question 1.- Create a NodeJs Script that will do the following:
+  1.- Download the image from s3://cc414-images/scientis.png.
+  2.- Check if the metadata key "x-amz-meta-move" of te image is true
+  3.- If true, upload the image to s3://cc414-images/{MATRICULA}/image.png
+
+  20 Points.
+</label>
+
+<pre xmp style="width: 1200px;">
+var AWS = require('aws-sdk');
+var s3 = new AWS.S3();
+
+var params = {
+    Bucket: "cc414-images",
+    Key: "scientist.png"
+};
+
+s3.headObject(params,function(error,data){
+    if (error) {
+        console.log(error,error.stack)
+    }
+    else {
+        if (data.Metadata.move) {
+            var move = data.Metadata.move;
+            if (move == 'true') {
+                var stream = s3.getObject(params, function (error, data) {
+                    var bucketparams = {
+                        Bucket: 'cc414-images',
+                        Key: '23858/scientist.png',
+                        Body: data.Body,
+                    };
+
+                    s3.putObject(bucketparams, function (error, data) {
+                        console.log("Error: " + error, "Tus datos son: " + data);
+                    });
+                });
+            }
+            else {
+                console.log("Valor de Metada = Falso")
+            }
+        }
+        else
+            {
+            console.log("Error en campo metadata move")
+        }
+    }
+});
+</pre>
+
+
+<label>
+  Question 2. Create a NodeJs script that will do the following.
+  1.- Will get the Nasa Astronomy Picture of the day.
+  2.- Save the image in the local file system.
+  3.- Print the title of the image.
+  20 points
+</label>
+<pre xmp style="width: 1200px;">
+
+var apod = require("apod");
+
+var  path = '/home/isaac/Desktop/NasaImages';
+var download = require('images-downloader').images;
+apod.apiKey='uNqVSrQA5aDZofMGosb637UZYu5Ns2Ww1CsSlzhM';
+
+
+function callback(error, data) {
+
+    images=[data.url]
+    download(images, path)
+        .then(result=> {
+            console.log("imange descargada",data.title);
+    })
+    .catch (error=> console.log("error en decarga",error))
+
+}
+apod(callback);
+</pre>
+
+
+<label>
+  Question 3. Implement Google Analytics in your personal web site (All teams will do the same for their Final Project)
+  20 points.
+</label>
+<pre xmp style="width: 1200px;">
+<img src="resources/Google.png" alt="Google" style="width:800px;height:500px;">
+
+  Script en index
+
+      !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+      }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXX-X');//sin el Id
+      ga('send', 'pageview');
+
+</pre>
+
+
+<label>
+  Question 4. Read and explain the following artcile by Martin Flower : http://martinfowler.com/
+  articles/richardsonMaturityModel.html.
+  20 Points.
+</label>
+<pre xmp style="width: 1200px;">
+  Use la capa OSI de redes que estamos viendo en la clase (redes) por que se me hizo familiar a la base que tienen, la forma en que
+  separan las responsabilidades entre una capa y otra (o proceso) y como lo entendi fue que:
+
+  En tu Primer paso (Level 0) es el nivel de applicacion donde mediante un boton o ejecucion detonada por una accion del usuario
+  llegas a un endpoint a tu dominio donde empezaras a pedir cosas.
+
+  Segundo Paso (Level 1 - Resources ) es como el Transport Layer: Una conexion que sabe a donde dirigirse y que hacer en terminos de manejar
+  peticiones. Es aqui cuando entra obtener un recurso de ese dominio al que ya perteneces y buscas (tomando el ejemplo del
+  articulo) un slot para reservas tu cita con los doctores que estan disponibles.
+
+  Tercer paso (level 2 - HTTP Verbs) Lo veo como Network Layer: ya que con palabras claves puedes moverte en un espacio de recursos especiales
+  por recibir una secuencia de datos de un nodo a otro. Aqui es cuando estan los HTTP verbs (se que HTTP estan en otra capa) pero
+  en esta analogia la veo como encapsulada de este proceso; y con estas acciones de los verbos de HTTP podemos comnucarnos con
+  recursos en especifico y aparte que limitamos las acciones del usuario para no llevar a un proceso infinito y un monton de
+  acciones dierentes por que el usuario no sabe como dirigirse a los recursos.
+
+  Cuarto paso (level 3 - Hypermedia controls) DLL layer: donde ya con las acciones especiales de HTTP verb apuntamos a un recurso
+  que ya sabe el sistema en donde se encuentra y es aqui cuando explica el articulo de la conexion a una location de recursos
+  para seguir con un proceso en vez de regresar solo estado de la consulta anterior al Modelo.
+</pre>
+
+
+<label>
+  Question 5. Explain why cloud computing is Important
+  10 Points.
+</label>
+<pre xmp style="width: 1200px;">
+Mas por que es importante siento que es necesaria para la tecnologia de hoy en dia, antes era imposible mandar
+  datos de una computadora a otra y ahora podemos tener 1M de computadoras corriendo en un solo click y beneficia a
+  todo tipo de proyecto, desde escolar hasta investigacione de primer nivel. En lo personal yo lo veo Importante
+  para el sector que siempre he querido enforcarme (videojuegos) ya que reduces el tiempo de encontrar servidores
+  en ejecucion para unirte a la partida, o el lag entre usuarios por la distancia o velocidad de internet para mandar y
+  recibir datos, ahora todo se ejecuta en un solo lugar y todos se encuentran sobre ese dominio lo que reduce y optimiza
+  el intercambio de datos entre jugadores. Sin mencionar el futuro que esta abriendo para las nuevas generaciones y tecnologias
+  que se encuentran en desarrollo.
+</pre>
+
+
+<label>
+  Question 6. Explain what would like to change in this class and why
+  10 Points.
+</label>
+<pre xmp style="width: 1200px;">
+Al prinicpio se me hacia dificil seguir el paso de codificar mientras trataba de entender lo que se estaba haciendo, personalmente
+  prefiero ver la teoria y luego la practica, ya que en el codigo puedo seguir el paso pero dejo de analizar por que se esta usando
+  este metodo o esta invocacion o scope del metodo etc. etc. Ya con la segunda semana que mencionaste que seria un dia practico y le otro
+  teorico , me senti mejor por que asi puedo poner mas atencion a lo que se hace y analizarlo.
+
+  Creo que no es algo que cambiaria, si no comentaria que se hiciera mas seguido como en que cada sesion pasara alguien nuevo para sentir esa presion de que estamos haciendo y ayudarnos entre todos
+  diciendole que sigue o que tenemos que hacer, como se ha estado haciendo anteriormente.
+</pre>
+
+
+<h1>Trabajo en equipo con : Jesus Chaidez.</h1>

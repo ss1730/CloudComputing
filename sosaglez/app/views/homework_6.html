@@ -1,0 +1,99 @@
+
+<label>
+  Question 1.- Read the AWS Well Architected FrameWork and make a summary about the 5
+  pillars https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf
+  60 Points.
+</label>
+
+<pre xmp style="width: 1200px;">
+  <h2>SEGURIDAD</h2>
+  Me di cuenta que la estrucutra que lleva este articulo de amazon es como empezamos a ver la clase
+  desde un principio donde vimos la parte de la seguridad y como es que almacenamos nuestras credenciales. Solo
+  que en este caso  la vista fue desde el punto 3.- Protecion de Infraestructura. Donde la seguridad esta compuesta por 5 secciones y al
+  relacionarlo con la dinamica que llevamos en clase entiendo que la cuenta maestra (Jaques) lleva la configuracion de Identidad
+  y Adminsitracion de Acceso (punto 1 de Seguridad en el Articulo), y dependiendo de los recursos que necesitemos vamos elaborando
+  la deteccion de controles (punto 2). Una vez que se tiene los 3 primero puntos se ve la mejor forma de tener proteccion en los datos (punto 4) el cual
+  yo lo relacione mucho con los servicios de Amazon que estan desarrollados especificamente para mantener seguidad o que hacen enfasis en ello.
+  Por ultimo (punto 5) el apartado de de CloudFormation el cual creas una seccion aislada de tus configuraciones y conexiones para el entorno de trabajo.
+  -----Duda sobre este apartado-----
+  No entendi complentamente la parte de Federation (Federation with your existing directory service)
+  --FIN----
+
+  --CONFIABILIDAD---
+  En esta parte de confiabilidad va avanzando a la parte del desarrollo donde en FOUNDATIONS tienes todo IAM ya que este es quien deja conectarte
+  a los recursos y servicios de Amazon Web Services, entonces hace el enfasis que si nesta parte bien estrucutrada (usando el apartado de Seguridad) puedes
+  llegar a tener un desastre y perder dinero por cuestiones inecesarias. Despues llega CHANGEN MANAGEMENT donde menciona que toda accion realiazda en el entorno
+  de amazon web services se registra (CloduTrail) donde genera Logs para tu revision. FAILURE MANAGMENT: La seccion en donde CloudFormation juega un papel muy importante ya
+  que es donde puedes configurar tus recursos y servicios con una Plantilla para reducir la posibilidad de fallos en tu setup.
+  --FIN---
+
+<h2>EFICENCIA DE DESEMPEÑO</h2>
+Sin duda mi seccion favorita ya que lo relacione mucho con la clase del Jueves 5 de Octubre en donde empezamos a diseñar un sistema en conjunto
+y aqui empieza de SELECCION: El cual es entender tu problema, saber que vas hacer y como lo vas atacar, empezar a elaborar los diagramas..etc
+hasta la idea solida una vez que tienes esto te vas a COMPUTE: Revisar cada componente (diagrama completo) para entneder si de enralidad eso es lo que vas a necesitar
+(siento que va de la mano a la hora de establecer tu diagrama de arquitectura, por como lo hicimos en clase). Una vez detallada esa parte nos pasamos a como vamos almacenar STORAGE: donde
+empezamos a preguntarnos que base de datos utilzaremos debido a las especificaciones como disponiiblidad de datos, consistencia,particionamiento,durabilidad,escalabilidad, compatibiidad de consultas (queries)
+previstos en los pasos anteriores ( y amazon provee una gama extensa de bases de datos para estos casos).
+
+NETWORK: Aqui hace el enfasis sobre el Rendimiento (Throughput) de tu sistema una vez que decidiste la base de datos y su comportamiento viene la capa de Red y su configuracion ( donde el articulo
+nos menciona de Route 53 para agilizar esta decicion).
+
+REVIEW: Yo la veo como la conexion de mantenrse al tanto de las mejores de los servicios que ya estamos utilizando.
+
+MONITORING: Lo que vimos en clase, la parte que todo nuestro moustro de sistema esta siendo monitoreado en cada componente y por demas, lo cual no peredemos
+informacion de cada cosa que este ocurriendo y si ocurrio poder detectarlo al momento y no cuando ya ha sido tarde.
+
+TRADEOFF: lo imagine como un equipo de futboll donde  es pusto a prueba y solo el mejor pasa la final o las eliminatorias
+entonces una vez que ya este nuestro sistema funcionando, es sometido como a pruebas de estress y si no puede con tanta carga, se hacen arreglos pero ya son arreglos
+especificos para todo lo que se ha desarrollado y todo tiene que ver con optimizar el mejoramiento de cada proceso para esto el articulo menciona de servicios como: ElasticCache, CLodFront, Snowball.
+Los cuales nos ayudaran en este paso.
+  --FIN---
+
+<h2>OPTIMIZACION DE COSTOS</h2>
+
+COST-EFFECTIVE RESOURCES: Este punto me parecio muy obvio con el titulo y es entender lo que necesitas y veo que amazon lo hace por procesamiento no tanto por el costo
+(por el ejemplo que pone del servidor) y es verdad, muchas veces nos importa el procesamiento para generar una salida (depende mucho el caso tambien) pero ponemos una limitante
+para entender la analogia de procesamiento sobre tiempo/costo.
+  --FIN---
+
+MATCHING SUPPLY AND DEMAND: Lo veo como oferta y demanda, si no estoy vendiendo no hago sobre produccion y de lo contrario si vendo pues hago sobreproduccion, lo mismo
+con mis recursos en operacion, si no estoy procesando no lo uso , pero si estoy teniendo demanda levanto mas servidores con sus respectivas configuraciones y se va la idea a lo que es
+escalibidad.
+  --FIN---
+
+EXPENDITURE AWARNESS: Cualquier proceso que no se tuvo que haber realizado pero mas con el equipo de desarrollo, como una decicion erronea
+todo esto es almacenado y registrado dentro de los costos de la empresa entonces al separar con Tags cada recurso puede saber que esta pasado y por que
+se esta usando tanto procesamiento si en realidad no es requirida y saber por que el equipo de desarollo de esa area decidio levantar mas servidores u otros servicios.
+  --FIN---
+
+OPTIMIZING OVER TIME:
+Esta seccion la veo como EVOLVE ya que tu sistema esta configurado para soportar gran cantidad de procesos y esta optimizacion
+nos vamos a la parte de manterlo vivo y que presente nuevas caracteristicas para sus usuarios un ejemplo muy simple seria facebook ya que solo se preocupa
+por mantener a sus usuarios conectados con nuevas actualizaciones de acciones, vista etc.
+  --FIN---
+
+<h2>OPERATIONAL EXCELLENCE PILLAR</h2>
+Esta seccion siento que es mas el resumen (muy importante por que muestra filosofias) del articulo ya que se va de forma resumida acciones, consejos y tips
+que puedes ir desarrollando en cada paso de tu sistema a implentar. Aparte que te lleva de la mano para y es una Guia.
+</pre>
+
+
+<label>
+  Question 2. Explain how you will apply the AWS Well Architecture Framework to your project.
+  40 points
+</label>
+<pre xmp style="width: 1200px;">
+  1.-Reliability Pillar:Este pilar lo vamos aplicar usando una de las herramientas que nos proporciona amazon gamelift como ayuda , al momento de que exista un cambio con el flujo de usuarios en nuestras sesiones de juegos , amazon gamelift se encarga de manejar ese cambio en automático.
+
+  2.- Cost Optimization Pillar:
+  Cost-effective resources:  Una vez que tengamos una versión estable, empezaremos a revisar con el uso de métricas y administradores de servicios para reducir el tiempo de lambdas , tamaño y obtener el tamaño viable para las instancias de EC2 aplicando Tags para ir conociendo el costo que estamos generando y con esto  configurar las flotas de Gamelift para levantar servidores necesarios y ya una vez que tengamos el número de jugadores controlar el LAG dentro de cada sesión que sería aplicar métricas de cada flota e ir revisando los logs que estas generen.
+
+
+  3.-Performance Efficiency Pillar: Para nuestro perfomance vamos a utilizar una apigateway donde todo funcione con serverless function (lambdas) todo nuestro flujo de datos va funcionar de esta manera así aumentaremos la rapidez con la funciona nuestra aplicacion a la hora de transitar datos en ella.
+
+  4.- Operational Excellence Pillar: me llevo el aprendizaje de la clase en especificar bien los componentes y pasos para desarrollar una buena arquitectura. Con esta idea de proyecto final que tenemos en mente siento que desde un principio hemos llevado este pilar de una forma organizada y hay puntos que si contemplamos como lo inverso, entonces al aplicar
+  esta informacion puedo hacer un repaso de lo que llevamos y el como lo hemos estado haciendo para conectarlo con los servicios de AWS. Solo seria ver la operación como los puntos anteriores que es entender nuestro sistema ya en un ambiente de estrés y empezaremos a optimizar gracias a los logs de cada servicio y recomendaciones que AWS nos ofrece. Una vez finalizado estos 2 puntos, estaríamos diseñando la parte de Responses ya que todo debe de estar automatizado con esto implementamos alertas con CloudWatch.e
+</pre>
+
+
+<h1> Trabajo en equipo con Jesus Chaidez <h1>
